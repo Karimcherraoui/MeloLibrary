@@ -16,4 +16,7 @@ class artistes extends Model
         'image',
 
     ];
+    public function Music(){
+        return $this->hasMany(PieceMusical::class,'artiste_id','id');
+    }
 }

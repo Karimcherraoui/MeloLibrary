@@ -10,7 +10,7 @@
     <title>Sign Up</title>
 </head>
 
-<body class="bg-gray-900 font-sans">
+<body class="bg-gray-200 font-sans">
 
 
 
@@ -18,9 +18,9 @@
     {{-- Start NavBar --}}
 
     <div>
-        <div class="flex justify-center bg-gray-900 py-3 px-8">
+        <div class="flex justify-center bg-gray-200 py-3 px-8">
             <div>
-                <a href="#">
+                <a href="/">
                     <img class="w-36" src="{{ asset('storage/adatify-logo-removebg-preview.png') }}" alt="Logo" />
                 </a>
             </div>
@@ -33,7 +33,7 @@
 
         <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-lg">
-                <h1 class="text-center  font-bold text-white sm:text-3xl">
+                <h1 class="text-center  font-bold text-gray-700 sm:text-3xl">
                     Sign up for free to start listening. </h1>
 
 
@@ -75,7 +75,7 @@
                             value="{{old('userName')}}"
 
                                 class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-                                placeholder="Last Name" />
+                                placeholder="User Name" />
                         </div>
                     </div>
 
@@ -131,7 +131,7 @@
 
                     <p class="text-center text-sm text-gray-500">
                         Have an account?
-                        <a class="underline text-white" href="/">Log in.</a>
+                        <a class="underline text-blue-700" href="/login">Log in.</a>
                     </p>
                 </form>
             </div>

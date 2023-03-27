@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PieceMusical;
+use App\Models\artistes;
+use App\Models\Bande;
 use Illuminate\Http\Request;
 
 class Pages extends Controller
@@ -37,7 +39,39 @@ class Pages extends Controller
         return view('PieceMusical.AddPieceMusical');
     }
 
-    public function listUsers(){
-        return view('admin.listUsers');
+    public function listArtist(){
+        return view('artistes.showArtist');
     }
+
+
+    public function dashboardADmin(){
+        return view('admin.dashboardAdmin');
+    }
+
+    public function bandsAdd(){
+        return view('bands.createBand');
+    }
+
+    
+
+    public function createPiece(){
+
+        $artistes = artistes::all();
+        $bandes = Bande::all();
+  
+        return view('PieceMusical.test',['artistes' => $artistes , 'bandes'=>$bandes]);
+    }
+    public function music(){
+
+        $artistes = artistes::all();
+        $bandes = Bande::all();
+  
+        return view('PieceMusical.test',['artistes' => $artistes , 'bandes'=>$bandes]);
+    }
+
+
+
+    
+    
+    
 }

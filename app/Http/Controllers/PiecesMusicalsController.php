@@ -11,22 +11,35 @@ class PiecesMusicalsController extends Controller
 
     public function createPiece(Request $request)
     {
-        $request->validate([
+        $musicForm = $request->validate([
             'titreMusic' => 'required',
-            'pays' => 'required',
+            // 'type' => 'required|in:artist,band',
+            'artiste_id' => 'required_if:type,artist',
+            'band_id' => 'required_if:type,band',
             'image' => 'required',
-            'date' => 'required',
-
+            'music' => 'required',
+            'words' => 'required',
+            'writers' => 'required',
+            'langue' => 'required',
+            'duration' => 'required',
+            'release_date' => 'required',
         ]);
-        // dd($request);
-        $artiste = new PieceMusical();
-        $artiste->name = $request->name;
-        $artiste->pays = $request->pays;
-        $artiste->image = $request->image;
-        $artiste->date = $request->date;
 
-        $artiste->save();
+        if ($request->hasFile('image')) {
+            $musicForm['image'] = $request->file('image')->store('musical_piece_image', 'public');
+        }
+        if ($request->hasFile('music')) {
+            $musicForm['music'] = $request->file('music')->store('music', 'public');
+        }
+        // dd($musicForm);
+        if ($musicForm['type'] == 'artist') {
+            $musicForm['artiste_id'] = $request->artiste_id;
+        } else {
+            $musicForm['band_id'] = $request->band_id;
+        }
 
-        return redirect('/')->with('status', 'Your Account Has been Created succefull');
+        pieceMusical::create($musicForm);
+        
+        return redirect('/admin/piecesMusicals')->with('message', 'Musical piece created successfully');
     }
 }

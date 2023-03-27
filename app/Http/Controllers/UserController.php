@@ -53,14 +53,21 @@ class UserController extends Controller
             "password" => "filled|required|min:6",
         ]);
         if (auth()->attempt($attributes)) {
-            return redirect("/home");
+            return redirect("/");
         } else {
             return back()->withErrors(["message" => "invalide email/password"]);
         }
     }
 
+    public function delete(User $user)
+    {
+        $user->delete();
+        return redirect('/admin/dashboard')->with('message', 'user deleted');
+    }
+
     public function logout(){
-        
+        auth()->logout();
+        return redirect('/');
     }
 
 

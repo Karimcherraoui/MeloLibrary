@@ -1,10 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Pages;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BandeController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\PiecesMusicalsController;
+use App\Models\PieceMusical;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +20,10 @@ use App\Http\Controllers\PiecesMusicalsController;
 */
 
 // Route::get('/Client', [ControllerCLient::class,'Client'] 
-   
+
 // );
 // Route::get('/ClientForm', [ControllerCLient::class,'ClientPost'] 
-   
+
 // );
 // Route::get('/', [ControllerCLient::class,'Login']);
 
@@ -29,52 +31,83 @@ use App\Http\Controllers\PiecesMusicalsController;
 
 
 // Route::get('/signup', [ControllerCLient::class,'signUp'] 
-   
+
 // );
 // Route::POST('/ajoutClient/traitement', [ControllerCLient::class,'register'] 
-   
+
 // );
 // Route::get('/artiste/create', [ControllerArtist::class,'create']);
 // Route::post('/artiste/store', [ControllerArtist::class,'createArtiste']);
 
 
 // Route::get('/home', [ControllerCLient::class,'home'] 
-   
+
 // );
 
 
 // route::get('/',)
-Route::get('/home', [Pages::class,'home'] );
 
+//  List Of users 
 
-Route::get('/signup', [Pages::class,'signUp'] );
-Route::post('/register', [UserController::class,'register'] );
-
-
-
-Route::get('/artiste/create', [Pages::class,'ArtistView'])->middleware(['auth','isAdmin']);
-Route::post('/artiste/store', [ArtistController::class,'createArtiste']);
+Route::get('/admin/dashboard', [UserController::class, 'index'])->middleware(['auth', 'isAdmin']);
+Route::delete('/user/delete/{user}', [UserController::class, 'delete']);
 
 
 
-Route::get('/', [Pages::class,'Login']);
-Route::Post('/login', [UserController::class,'loginPost']);
+// Home Page
+Route::get('/', [Pages::class, 'home']);
+
+//  Register
+Route::get('/signup', [Pages::class, 'signUp']);
+Route::post('/register', [UserController::class, 'register']);
+
+// Login And logout
+
+Route::get('/login', [Pages::class, 'Login']);
+Route::Post('/loginPost', [UserController::class, 'loginPost']);
+Route::Post('/Users/logout', [UserController::class, 'logout']);
 
 
-Route::get('/listUsers', [UserController::class,'index'])->middleware(['auth','isAdmin']);
-// Route::Post('/login', [UserController::class,'loginPost']);
+// Artiste Route
+Route::get('/artiste/create', [Pages::class, 'ArtistView'])->middleware(['auth', 'isAdmin']);
+Route::get('/artiste/list', [ArtistController::class, 'index'])->middleware(['auth', 'isAdmin']);
+Route::POST('/artiste/edit/{artiste}', [ArtistController::class, 'edit'])->middleware(['auth', 'isAdmin']);
 
-Route::get('/addpiecemusical', [Pages::class,'addPieceMusical'])->middleware(['auth','isAdmin']);
-Route::post('/music/addpiecemusical', [PiecesMusicalsController::class,'createPiece']);
-
-
-
-
-
+Route::post('/artiste/store', [ArtistController::class, 'createArtiste']);
+Route::delete('/artiste/delete/{artiste}', [ArtistController::class, 'delete']);
+Route::patch('/artiste/update/{artiste}', [ArtistController::class, 'update']);
 
 
-Route::fallback(function(){
+// Bande Route
+Route::get('/bands/create', [Pages::class, 'bandsAdd'])->middleware(['auth', 'isAdmin']);
+Route::get('/band/list', [BandeController::class, 'index'])->middleware(['auth', 'isAdmin']);
+Route::POST('/band/edit/{band}', [BandeController::class, 'edit'])->middleware(['auth', 'isAdmin']);
+Route::post('/band/store', [BandeController::class, 'createBand']);
+Route::patch('/band/update/{band}', [BandeController::class, 'update']);
+Route::delete('/band/delete/{band}', [BandeController::class, 'delete']);
+
+// Route Music
+
+Route::get('/music/create', [Pages::class, 'createPiece'])->middleware(['auth', 'isAdmin']);
+
+
+// Admin Route
+// Route::get('/admin/dashboard', [Pages::class, 'dashboardADmin'])->middleware(['auth', 'isAdmin']);
+// Route::post('/artiste/store', [ArtistController::class,'createArtiste']);
+
+
+
+
+Route::get('/addpiecemusical', [Pages::class, 'addPieceMusical'])->middleware(['auth', 'isAdmin']);
+Route::post('/music/addpiecemusical', [PiecesMusicalsController::class, 'createPiece']);
+
+
+
+
+
+// Route 404 Page
+
+Route::fallback(function () {
 
     return view('Page404');
-
 });

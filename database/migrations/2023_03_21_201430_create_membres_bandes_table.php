@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('membres_bandes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('bande_id')->constrained('bandes');
+            $table->foreignId('bande_id')->constrained('bandes')->onDelete('cascade');
             $table->timestamps();
         });
     }

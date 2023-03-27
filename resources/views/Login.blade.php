@@ -13,7 +13,7 @@
     <title>Login</title>
 </head>
 
-<body class="bg-gray-900 font-sans">
+<body class="bg-gray-200 font-sans">
 
 
 
@@ -21,9 +21,9 @@
     {{-- Start NavBar --}}
 
     <div>
-        <div class="flex justify-center bg-gray-900 py-3 px-8">
+        <div class="flex justify-center bg-gray-200 py-3 px-8">
             <div>
-                <a href="#">
+                <a href="/">
                     <img class="w-36" src="{{ asset('storage/adatify-logo-removebg-preview.png') }}" alt="Logo" />
                 </a>
             </div>
@@ -36,15 +36,15 @@
 
         <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-lg">
-                <h1 class="text-center  font-bold text-white sm:text-3xl">
+                <h1 class="text-center  font-bold text-black sm:text-3xl">
                     To continue, log in to Spotify. </h1>
 
 
 
-                <form action="/login" method="POST"
+                <form action="/loginPost" method="POST"
                     class="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
                     @csrf
-                    <p class="text-center text-lg text-white font-medium">Sign in to your account</p>
+                    <p class="text-center text-lg text-gray-600 font-medium">Sign in to your account</p>
 
                     @error("message")
                     <p class="text-[15px] text-red-500">
@@ -102,7 +102,7 @@
                     <hr class=" border-gray-300 ">
 
 
-                    <p class="text-center text-lg text-white">
+                    <p class="text-center text-lg text-gray-600">
                         Don't have an account?
                     </p>
                     <a class=" flex justify-center w-auto rounded-lg bg-green-500 px-5 py-3 text-sm font-medium text-white"
