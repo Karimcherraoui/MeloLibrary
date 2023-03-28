@@ -41,17 +41,13 @@
                 </div>
 
                 <div>
-                    <label for="artiste_id" class="mb-4">Artist/Band ID</label>
+                    <label for="artiste_id" class="mb-4">Artist</label>
                     <div class="relative">
                         <div>
                             <label class="mr-4 ">Type:</label>
                             <label for="artist">
                                 <input type="radio" id="artist" name="type" value="artist">
                                 Artist
-                            </label>
-                            <label for="band">
-                                <input type="radio" id="band" name="type" value="band">
-                                Band
                             </label>
                         </div>
                         @error('artiste_id')

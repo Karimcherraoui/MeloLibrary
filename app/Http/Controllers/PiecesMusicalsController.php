@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\like;
+
+use App\Models\Like;
 use App\Models\Bande;
 use App\Models\Users;
 use App\Models\Artistes;
 use App\Models\PieceMusical;
+
+
 use Illuminate\Http\Request;
-
-
 use wapmorgan\Mp3Info\Mp3Info;
 use App\Models\likePieceMusical;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PiecesMusicalsController extends Controller
@@ -40,7 +42,7 @@ class PiecesMusicalsController extends Controller
             'titreMusic' => 'required',
             'type' => 'required|in:artist,band',
             'artiste_id' => 'required_if:type,artist',
-            'band_id' => 'required_if:type,band',
+            // 'band_id' => '',
             'image' => 'required',
             'music' => 'required',
             'genre' => 'required',
@@ -124,4 +126,32 @@ class PiecesMusicalsController extends Controller
         $music->delete();
         return redirect('/music/list')->with('message', 'music deleted');
     }
+
+    public function like(PieceMusical $music){
+            $form = [
+                'piece_musical_id' =>  $music->id,
+                'client_id' => auth()->id(),
+            ];
+            Like::create($form);
+           return back()->with('message','liked');
+    }
+
+     public function unlike(pieceMusical $music)
+    {
+        like::where('piece_musical_id', $music->id)->where("client_id", Auth::id())->delete();
+        return back()->with('message', 'unliked');
+    }
+
+
+    public function likedMusic(){
+        $user = Auth::user();
+        $likedMusic = PieceMusical::whereHas('likes', function($query) use ($user) {
+            $query->where('client_id', $user->id);
+        })->get();
+
+        return view('PieceMusical.LikedSongs', ['musics' => $likedMusic]);
+
+
+    }
+    
 }

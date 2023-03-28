@@ -42,7 +42,7 @@
                 </div>
 
                 <div>
-                    <label for="artiste_id" class="mb-4">Artist/Band ID</label>
+                    <label for="artiste_id" class="mb-4">Artist</label>
                     <div class="relative">
                         <div>
                             <label class="mr-4 ">Type:</label>
@@ -50,10 +50,7 @@
                                 <input type="radio" id="artist" name="type" value="{{ $musics->artist }}">
                                 Artist
                             </label>
-                            <label for="band">
-                                <input type="radio" id="band" name="type" value="{{ $musics->band }}">
-                                Band
-                            </label>
+                            
                         </div>
                         @error('artiste_id')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>

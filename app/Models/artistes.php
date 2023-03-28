@@ -17,6 +17,6 @@ class artistes extends Model
 
     ];
     public function Music(){
-        return $this->hasMany(PieceMusical::class,'artiste_id','id');
+        return $this->hasMany(PieceMusical::class,'artiste_id');
     }
 }

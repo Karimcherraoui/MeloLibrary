@@ -12,4 +12,10 @@ class Bande extends Model
 
     protected $fillable = ['name','image','pays','creation_date'];
 
+
+    public function music(){
+
+        return $this->belongsTo(PieceMusical::class);
+    }
+
 }

@@ -93,16 +93,9 @@
               </div>
             
             @auth
-            <a href="/"
-            class="text-gray-700 text-xs font-semibold leading-5 tracking-widest uppercase py-[9px] px-[17px] sm:px-[38px] rounded-full hover:scale-105">welcome
-            {{ auth()->user()->userName }}
-        </a>
+            
         <div class="flex ">
-@if (auth()->user()->isAdmin == '1')
-<a class="text-gray-700 text-xs font-semibold leading-5 tracking-widest uppercase py-[9px] px-[17px] sm:px-[38px] rounded-full hover:scale-105"
-href="{{ asset('/admin/dashboard') }}"><i class="fa-solid fa-gear "
-style="color: #ffffff;"></i>dashboard</a>
-@endif
+
 
 <form action="/Users/logout" method="post">
     @csrf

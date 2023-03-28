@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Like extends Model
 {
     use HasFactory;
-    protected $table = 'likes';
-
+    protected $table = 'like';
     protected $fillable = ['piece_musical_id','client_id'];
+
+    public function user(){
+        return $this->belongsToMany(user::class);
+    }
 }
