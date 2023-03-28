@@ -70,22 +70,7 @@
                     </div>
                 </div>
 
-                <div id="content" class="">
-                    <div id="inputs" class="">
-                        <input
-                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="grid-password" type="text" placeholder="member name" name="members[]" value="">
-                        <input
-                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="grid-password" type="text" placeholder="member name" name="members[]" value="">
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" id="plus" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor" class="w-14 h-14 cursor-pointer align-center mb-2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                    @error('members')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
+                
                 
                     <button type="submit"
                         class="block w-full rounded-lg bg-green-500 px-5 py-3 text-sm font-medium text-white">
@@ -95,17 +80,5 @@
             </form>
         </div>
     </div>
-    <script>
-        let plusButton = document.getElementById('plus');
-        plusButton.addEventListener('click', () => {
-            const contentPlus = document.getElementById('inputs');
-            const div = document.createElement('div');
-            div.innerHTML = `
-                        <input
-                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        type="text" placeholder="member name" name="members[]" value="">
-    `;
-            contentPlus.prepend(div);
-        })
-    </script>
+  
 @endsection

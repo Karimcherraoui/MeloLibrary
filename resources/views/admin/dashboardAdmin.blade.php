@@ -30,28 +30,28 @@
             <ul class="list-none mt-5">
                 <li class="py-2 px-0">
                     <a class="text-white no-underline font-bold text-md hover:text-gray-500" href="/">
-                        <span class="fa fa-home"></span>
+                        <span class="fa fa-home mr-4"></span>
                         <span>Home</span>
                     </a>
                 </li>
 
                 <li class="py-2 px-0">
                     <a class="text-white  no-underline font-bold text-md hover:text-gray-500" href="/artiste/list">
-                        <i class="fa fa-list" aria-hidden="true"></i>
+                        <i class="fa fa-user mr-4" aria-hidden="true"></i>
 
                         <span>List Artist</span>
                     </a>
                 </li>
 
                 <li class="py-2 px-0">
-                    <a class="text-white  no-underline font-bold text-md hover:text-gray-500" href="#">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                        <span>Add Music</span>
+                    <a class="text-white  no-underline font-bold text-md hover:text-gray-500" href="/music/list">
+                        <i class="fa fa-music mr-4" aria-hidden="true"></i>
+                        <span>List Music</span>
                     </a>
                 </li>
                 <li class="py-2 px-0">
                     <a class="text-white no-underline font-bold text-md hover:text-gray-500" href="/band/list">
-                        <i class="fa fa-list" aria-hidden="true"></i>
+                        <i class="fa fa-users mr-4" aria-hidden="true"></i>
                         <span>List Band</span>
                     </a>
                 </li>
@@ -93,10 +93,7 @@
               </div>
             
             @auth
-            <a href="/"
-            class="text-gray-700 text-xs font-semibold leading-5 tracking-widest uppercase py-[9px] px-[17px] sm:px-[38px] rounded-full hover:scale-105">welcome
-            {{ auth()->user()->userName }}
-        </a>
+           
         <div class="flex ">
 @if (auth()->user()->isAdmin == '1')
 <a class="text-gray-700 text-xs font-semibold leading-5 tracking-widest uppercase py-[9px] px-[17px] sm:px-[38px] rounded-full hover:scale-105"

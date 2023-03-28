@@ -1,7 +1,7 @@
 @extends('admin.dashboardAdmin')
 
 @section('titlePage')
-    List Bands
+    List Musics
 @endsection
 
 @section('content')
@@ -12,15 +12,15 @@
     Back
 </button>
     <div class="overflow-x-auto">
+        <p class="text-center font-bold text-2xl">List Music</p>
 
-        <p class="text-center font-bold text-2xl">List Bands</p>
 
         <div class="min-w-screen mt-20 flex items-center justify-center  font-sans overflow-hidden">
             <div class="w-full lg:w-5/6">
 
 
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
-                    onclick="window.location.href='/bands/create'">Add new Band</button>
+                    onclick="window.location.href='/music/create'">Add new Music</button>
 
 
                 <div class="bg-white shadow-md rounded my-6">
@@ -28,45 +28,59 @@
                         <thead>
                             <tr class="bg-gray-300 text-gray-600 uppercase text-sm leading-normal">
 
-                                <th class="py-3 px-6 text-left">Image</th>
-                                <th class="py-3 px-6 text-center">Name</th>
-
-                                <th class="py-3 px-6 text-center">pays</th>
-                                <th class="py-3 px-6 text-center">Date Creation</th>
+                                <th class="py-3 px-6 text-left">Title Music</th>
+                                <th class="py-3 px-6 text-left">Artist</th>
+                                <th class="py-3 px-6 text-center">Writers</th>
+                                <th class="py-3 px-6 text-center">Langue</th>
+                                <th class="py-3 px-6 text-center">Duration</th>
+                                <th class="py-3 px-6 text-center">Release Date</th>
+                                <th class="py-3 px-6 text-center">Genre</th>
                                 <th class="py-3 px-6 text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-600 text-sm font-light">
 
-                            @foreach ($bands as $band)
+                            @foreach ($musics as $music)
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
 
                                     <td class="py-3 px-6 text-left">
                                         <div class="flex items-center">
                                             <div class="mr-2">
                                                 <img class="w-16 h-16 rounded-full"
-                                                    src="{{ asset('storage/' . $band->image) }}" />
+                                                    src="{{ asset('storage/' . $music->image) }}" />
                                             </div>
-                                            
+                                            <span>{{ $music->titreMusic }}</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-6 text-center">
                                         <span
-                                            class="bg-blue-200 text-black py-1 px-3  rounded-full text-xs">{{ $band->name }}</span>
-                                    </td>
-                                    {{-- {{dd('')}}  --}}
-                                    <td class="py-3 px-6 text-center">
-                                        <span
-                                            class="bg-blue-200 text-black py-1 px-3 rounded-full text-xs">{{ $band->pays }}</span>
+                                            class="bg-blue-200 text-black py-1 px-3 rounded-full text-xs">{{ $music->artiste->name }}</span>
                                     </td>
                                     <td class="py-3 px-6 text-center">
                                         <span
-                                            class="bg-blue-200 text-black py-1 px-3 rounded-full text-xs">{{ $band->creation_date }}</span>
+                                            class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">{{ $music->writers }}</span>
+                                    </td>
+                                    <td class="py-3 px-6 text-center">
+                                        <span
+                                            class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">{{ $music->langue }}</span>
+                                    </td>
+                                    <td class="py-3 px-6 text-center">
+                                        <span
+                                            class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">{{ $music->duration }} min</span>
+                                    </td>
+                                    <td class="py-3 px-6 text-center">
+                                        <span
+                                            class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">{{ $music->release_date }}</span>
+                                    </td>
+                                    <td class="py-3 px-6 text-center">
+                                        <span
+                                            class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">{{ $music->genre }}</span>
                                     </td>
                                     
+
                                     <td class="py-3 px-6 text-center">
                                         <div class="flex item-center justify-center">
-                                            <form action="/band/edit/{{ $band->id }}" method="POST">
+                                            <form action="/music/edit/{{ $music->id }}" method="POST">
                                                 @csrf
                                                 <button type="submit"
                                                     class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
@@ -80,7 +94,7 @@
                                             </form>
 
 
-                                            <form action="/band/delete/{{ $band->id }}" method="POST">
+                                            <form action="/music/delete/{{ $music->id }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"

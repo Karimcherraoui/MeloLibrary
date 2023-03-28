@@ -88,7 +88,13 @@ Route::delete('/band/delete/{band}', [BandeController::class, 'delete']);
 
 // Route Music
 
-Route::get('/music/create', [Pages::class, 'createPiece'])->middleware(['auth', 'isAdmin']);
+Route::get('/music/create', [Pages::class, 'music'])->middleware(['auth', 'isAdmin']);
+Route::get('/music/list', [PiecesMusicalsController::class, 'index'])->middleware(['auth', 'isAdmin']);
+Route::post('/music/edit/{music}', [Pages::class, 'edit'])->middleware(['auth', 'isAdmin']);
+Route::post('/music/store', [PiecesMusicalsController::class, 'createPiece']);
+Route::patch('/music/update/{music}', [PiecesMusicalsController::class, 'update']);
+Route::delete('/music/delete/{music}', [PiecesMusicalsController::class, 'delete']);
+
 
 
 // Admin Route
@@ -99,7 +105,6 @@ Route::get('/music/create', [Pages::class, 'createPiece'])->middleware(['auth', 
 
 
 Route::get('/addpiecemusical', [Pages::class, 'addPieceMusical'])->middleware(['auth', 'isAdmin']);
-Route::post('/music/addpiecemusical', [PiecesMusicalsController::class, 'createPiece']);
 
 
 

@@ -25,7 +25,13 @@ class Pages extends Controller
         return view('artiste.create');
     }
     public function home(){
-        return view('home');
+
+        $user = auth()->user();
+        $artistes = artistes::all();
+        $bandes = Bande::all();
+        $musics = PieceMusical::all();
+
+        return view('home',['musics' => $musics, 'user' => $user , 'artistes'=>$artistes , 'bandes'=>$bandes]);
     }
 
     public function ArtistView(){
@@ -54,19 +60,29 @@ class Pages extends Controller
 
     
 
-    public function createPiece(){
+    // public function createPiece(){
 
-        $artistes = artistes::all();
-        $bandes = Bande::all();
+    //     $artistes = artistes::all();
+    //     $bandes = Bande::all();
   
-        return view('PieceMusical.test',['artistes' => $artistes , 'bandes'=>$bandes]);
-    }
+    //     return view('PieceMusical.test',['artistes' => $artistes , 'bandes'=>$bandes]);
+    // }
     public function music(){
 
         $artistes = artistes::all();
         $bandes = Bande::all();
   
-        return view('PieceMusical.test',['artistes' => $artistes , 'bandes'=>$bandes]);
+        return view('PieceMusical.AddPieceMusical',['artistes' => $artistes , 'bandes'=>$bandes]);
+    }
+
+    public function edit(PieceMusical $music)
+    {
+        $user = auth()->user();
+        $artistes = artistes::all();
+        $bandes = Bande::all();
+
+                // dd($user);
+        return view('PieceMusical.updateMusic', ['musics' => $music, 'user' => $user , 'artistes'=>$artistes , 'bandes'=>$bandes]);
     }
 
 

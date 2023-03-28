@@ -14,6 +14,9 @@ List Artists
 </button>
 
 <div class="overflow-x-auto">
+
+    <p class="text-center font-bold text-2xl">List Artists</p>
+
     
     <div class="min-w-screen mt-20 flex items-center justify-center  font-sans overflow-hidden">
         <div class="w-full lg:w-5/6">

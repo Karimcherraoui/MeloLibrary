@@ -1,7 +1,7 @@
 @extends('admin.dashboardAdmin')
 
 @section('titlePage')
-    add Music
+    Edit Music
 @endsection
 
 @section('content')
@@ -13,16 +13,17 @@
         <div class="mx-auto max-w-lg">
             <h1 class="text-center font-bold text-black sm:text-3xl">Create Music</h1>
 
-            <form action="/music/store" method="POST" enctype="multipart/form-data"
+            <form action="/music/update/{{ $musics->id }}" method="POST" enctype="multipart/form-data"
                 class="mt-6 mb-0 space-y-4 rounded-lg p-4 bg-white shadow-lg sm:p-6 lg:p-8">
                 @csrf
+                @method('PATCH')
 
                 <div>
                     <label for="titreMusic" class="">Title</label>
                     <div class="relative">
                         <input name="titreMusic" type="text"
                             class="w-full rounded-lg border-gray-400 p-4 pr-12 text-sm shadow-md" placeholder="Title Music"
-                            value="{{ old('titreMusic') }}" />
+                            value="{{ $musics->titreMusic }}" />
                         @error('titreMusic')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -33,7 +34,7 @@
                     <div class="relative">
                         <input name="genre" type="text"
                             class="w-full rounded-lg border-gray-400 p-4 pr-12 text-sm shadow-md" placeholder="Genre Music"
-                            value="{{ old('genre') }}" />
+                            value="{{ $musics->genre }}" />
                         @error('genre')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -46,11 +47,11 @@
                         <div>
                             <label class="mr-4 ">Type:</label>
                             <label for="artist">
-                                <input type="radio" id="artist" name="type" value="artist">
+                                <input type="radio" id="artist" name="type" value="{{ $musics->artist }}">
                                 Artist
                             </label>
                             <label for="band">
-                                <input type="radio" id="band" name="type" value="band">
+                                <input type="radio" id="band" name="type" value="{{ $musics->band }}">
                                 Band
                             </label>
                         </div>
@@ -66,7 +67,7 @@
                             music
                         </label>
                         <input class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-md" id="grid-password"
-                            type="file" placeholder="" name="music" value="{{ old('music') }}">
+                            type="file" placeholder="" name="music" value="">
                         @error('music')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -96,7 +97,7 @@
                             id="" name="artiste_id">
                             <option selected disabled>Select Artiste</option>
                             @foreach ($artistes as $artiste)
-                                <option class="text-black" value="{{ $artiste->id }}">{{ $artiste->name }}
+                                <option class="text-black" value="{{ $artiste->name }}"">{{ $artiste->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -117,7 +118,7 @@
                             id="" name="band_id">
                             <option selected disabled>Select Band</option>
                             @foreach ($bandes as $band)
-                                <option class="text-black" value="{{ $band->id }}">{{ $band->name }}
+                                <option class="text-black" value="{{ $band->name }}">{{ $band->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -132,7 +133,7 @@
                     <div class="relative">
                         <input name="writers" type="text"
                             class="w-full rounded-lg border-gray-400 p-4 pr-12 text-sm shadow-md" placeholder="Writers"
-                            value="{{ old('writers') }}" />
+                            value="{{ $musics->writers }}" />
                         @error('writers')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -143,7 +144,7 @@
                     <div class="relative">
                         <input name="words" type="text"
                             class="w-full rounded-lg border-gray-400 p-4 pr-12 text-sm shadow-md" placeholder="Words"
-                            value="{{ old('words') }}" />
+                            value="{{ $musics->words }}" />
                         @error('words')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -310,12 +311,12 @@
 
                 </div>
                 <div>
-                    <label for="dateNaissance" class="">Date Creation</label>
+                    <label for="release_date" class="">Date Creation</label>
 
                     <div class="relative">
                         <input name="release_date" type="date"
                             class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-md"
-                            placeholder="Date Naissance" value="{{ old('release_date') }}" />
+                            placeholder="Release Date" value="{{ $musics->release_date }}" />
 
                         @error('release_date')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>

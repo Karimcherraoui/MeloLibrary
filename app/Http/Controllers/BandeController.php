@@ -17,8 +17,8 @@ class BandeController extends Controller
 
     public function index()
     {
+        
         $bands = bande::all();
-        // $Members =  MembreBande::where('id', $bands->id);
         return view('bands.showBand', ['bands' => $bands]);
     }
 
