@@ -57,13 +57,14 @@ Route::delete('/user/delete/{user}', [UserController::class, 'delete']);
 // Home Page
 Route::get('/', [Pages::class, 'home']);
 
+
 //  Register
 Route::get('/signup', [Pages::class, 'signUp']);
 Route::post('/register', [UserController::class, 'register']);
 
 // Login And logout
 
-Route::get('/login', [Pages::class, 'Login']);
+Route::get('/login', [Pages::class, 'Login'])->name('login');
 Route::Post('/loginPost', [UserController::class, 'loginPost']);
 Route::Post('/Users/logout', [UserController::class, 'logout']);
 
@@ -96,6 +97,9 @@ Route::post('/music/store', [PiecesMusicalsController::class, 'createPiece']);
 Route::post('/music/{music}/like', [PiecesMusicalsController::class, 'like']);
 Route::delete('/music/{music}/unlike', [PiecesMusicalsController::class, 'unlike']);
 Route::get('/music/list/liked', [PiecesMusicalsController::class, 'likedMusic'])->middleware(['auth', 'isUser']);
+Route::post('/music/{music}/comment', [PiecesMusicalsController::class, 'comment']);
+Route::get('/music/list/commentmusic', [PiecesMusicalsController::class, 'commentMusic']);
+
 
 
 Route::patch('/music/update/{music}', [PiecesMusicalsController::class, 'update']);

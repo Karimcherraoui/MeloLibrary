@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Like;
+use App\Models\Comment;
+
 use App\Models\Bande;
 use App\Models\Users;
 use App\Models\Artistes;
@@ -153,5 +155,32 @@ class PiecesMusicalsController extends Controller
 
 
     }
+
+    public function comment(Request $request)
+    {
+        if (Auth::check()) {
+            $formFields = [
+                'comment_body' => $request->comment_body,
+                'client_id' => Auth::user()->id,
+                'pieceMusical_id' => $request->piece,
+            ];
+            Comment::create($formFields);
+            return back()->with('message', 'your comment has been sent');
+        } else {
+            return redirect('/login')->with('message', 'you are not login');
+        }
+    }
+
+    public function commentMusic(){
+        $user = Auth::user();
+        $commentMusic = PieceMusical::whereHas('comment', function($query) use ($user) {
+            $query->where('client_id', $user->id);
+        })->get();
+
+        return view('PieceMusical.musicPage', ['comments' => $commentMusic]);
+
+
+    }
+
     
 }

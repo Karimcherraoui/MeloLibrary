@@ -43,7 +43,7 @@
                             @foreach ($musics as $music)
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
 
-                                    <td class="py-3 px-6 text-left">
+                                    <td class="py-3 px-6 text-left musicName">
                                         <div class="flex items-center">
                                             <div class="mr-2">
                                                 <img class="w-16 h-16 rounded-full"

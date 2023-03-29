@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PieceMusical;
-use App\Models\artistes;
-use App\Models\Bande;
 use App\Models\Like;
+use App\Models\Bande;
+use App\Models\Comment;
+use App\Models\artistes;
+use App\Models\PieceMusical;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Pages extends Controller
 {
@@ -40,11 +42,14 @@ class Pages extends Controller
 
     public function musicPage(PieceMusical $music)
     {
-
+        $user = Auth::user();
         // dd($music->id);
-        $clienId = Like::where('piece_musical_id', $music->id)->where('client_id',auth()->id())->first()?->client_id;
+        $clienId = Like::where('piece_musical_id', $music->id)->where('client_id', auth()->id())->first()?->client_id;
+        $commentMusic = Comment::where('pieceMusical_id', $music->id)
+        
+        ->get();
         // dd($clienId);
-        return view('PieceMusical.musicPage', ['music' => $music, 'client_id' => $clienId]);
+        return view('PieceMusical.musicPage', ['music' => $music, 'client_id' => $clienId, 'comments' => $commentMusic]);
     }
 
 

@@ -19,6 +19,6 @@ class IsUser
         if (Auth::user()->isAdmin === 0)
             return $next($request);
 
-            abort(401);
+            return Redirect()->back();
     }
 }

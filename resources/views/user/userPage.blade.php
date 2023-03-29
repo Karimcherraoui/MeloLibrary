@@ -19,7 +19,7 @@
 <div>
     <div class="fixed left-0 top-0 bottom-0 w-48 bg-gray-700 p-6">
         <div>
-            <a href="#">
+            <a href="/">
                 <img class="w-32"
                     src="{{asset('storage/adatify-logo-removebg-preview.png')}}"
                     alt="Logo" />

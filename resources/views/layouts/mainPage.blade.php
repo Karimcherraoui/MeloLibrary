@@ -17,7 +17,7 @@
 <div>
     <div class="fixed left-0 top-0 bottom-0 w-48 bg-gray-700 p-6">
         <div>
-            <a href="#">
+            <a href="/">
                 <img class="w-32"
                     src="{{asset('storage/adatify-logo-removebg-preview.png')}}"
                     alt="Logo" />
@@ -68,9 +68,13 @@
 
     <div class="ml-48 mb-24">
         <div class="flex justify-between bg-gray-400 py-3 px-8">
-            <div class="text-gray-500 cursor-not-allowed w-8 h-8 rounded-full text-lg border-0 bg-gray-400 mr-4 ">
-              <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-              type="search" name="search" placeholder="Search">
+            <div class="relative rounded-md shadow-sm">
+                {{-- <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                    <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                        <path d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
+                    </svg>
+                </div>
+                <input id="search" class="form-input py-2 pl-10 pr-4 block w-full leading-5 rounded-md transition duration-150 ease-in-out bg-white border border-gray-300 placeholder-gray-500 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" placeholder="Search..."> --}}
             </div>
             
             @auth
@@ -85,7 +89,7 @@ style="color: #ffffff;"></i>dashboard</a>
 <form action="/Users/logout" method="post">
     @csrf
     <button type="submit"
-    class="text-gray-700 text-xs font-semibold leading-5 tracking-widest uppercase py-[9px] px-[17px] sm:px-[38px] rounded-full hover:scale-105">logout</button>
+    class="text-white bg-gray-700 text-md font-bold leading-5 tracking-widest uppercase py-[9px] px-[14px] sm:px-[38px] rounded-full hover:scale-105">logout</button>
 </form>
 
 </div>
@@ -95,13 +99,13 @@ style="color: #ffffff;"></i>dashboard</a>
                 <ul class="list-none flex items-center w-fit">
                     
                     <li>
-                        <a class="text-gray-700 no-underline font-bold text-base tracking-widest hover:text-gray-500"
+                        <a class="text-gray-700 no-underline font-bold text-md tracking-widest hover:text-gray-500"
                         href="/signup">Sign Up</a>
                     </li>
                 </ul>
                 
                 <a
-                class="bg-blue-400 text-gray-700 text-base font-bold py-4 px-6 rounded-full cursor-pointer border-0 ml-5 hover:text-gray-500"
+                class="text-white bg-gray-700 text-md font-bold py-4 px-6 rounded-full cursor-pointer border-0 ml-5 hover:text-gray-500"
                 href="/login">Log In</a>
             </div>
             
@@ -126,7 +130,7 @@ style="color: #ffffff;"></i>dashboard</a>
 
 
 
-{
+
        
 
 
